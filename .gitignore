@@ -1,0 +1,19 @@
+data/
+**/*.log
+__pycache__/
+stimuli/lexicons/anpw_r.csv
+stimuli/lexicons/subtlex-pl.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.vscode/
+.DS_Store
+Thumbs.db
