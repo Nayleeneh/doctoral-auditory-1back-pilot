@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on styczeń 05, 2026, at 05:17
+    on styczeń 05, 2026, at 07:42
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -1313,12 +1313,15 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             "Jesteśmy w połowie badania.\n\n\n"
             "Aby kontynuować, naciśnij dowolny przycisk."
         )
-    else:
-        end_message = (
-            "To koniec badania.\n"
-            "Dziękuję za udział!\n\n"
-            "Aby zakończyć, naciśnij dowolny przycisk."
-        )
+    #else:
+    #    end_message = (
+    #        "To koniec badania.\n"
+    #        "Dziękuję za udział!\n\n"
+    #        "Aby zakończyć, naciśnij dowolny przycisk."
+    #    )
+    #
+    if int(expInfo["run"]) == 2:
+        endExpNow = True
     
     end_text.setText(end_message)
     end_key.keys = []
