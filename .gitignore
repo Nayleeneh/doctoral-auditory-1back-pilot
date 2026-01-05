@@ -1,8 +1,11 @@
 data/
 **/*.log
 __pycache__/
-stimuli/lexicons/anpw_r.csv
-stimuli/lexicons/subtlex-pl.csv
+stimuli_selection/lexicons/anpw_r.csv
+stimuli_selection/lexicons/subtlex-pl.csv
+stimuli_selection/models/piper/pl_PL-gosia-medium.onnx
+stimuli_selection/models/piper/pl_PL-gosia-medium.onnx.json
+
 
 # Python
 __pycache__/

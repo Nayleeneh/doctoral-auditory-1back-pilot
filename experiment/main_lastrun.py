@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on styczeń 02, 2026, at 20:45
+    on styczeń 05, 2026, at 05:17
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -162,7 +162,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=[1536, 960], fullscr=False, screen=0,
+            size=[1536, 960], fullscr=True, screen=0,
             winType='pyglet', allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -179,7 +179,7 @@ def setupWindow(expInfo=None, win=None):
         win.backgroundImage = ''
         win.backgroundFit = 'none'
         win.units = 'height'
-    win.mouseVisible = True
+    win.mouseVisible = False
     win.hideMessage()
     return win
 
@@ -334,7 +334,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     instructions_text = visual.TextStim(win=win, name='instructions_text',
         text='',
         font='Open Sans',
-        units='height', pos=(0, 0), height=0.05, wrapWidth=2.0, ori=0.0, 
+        units='height', pos=(0, 0), height=0.05, wrapWidth=1.4, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -381,7 +381,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         units='height', pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=1.0, 
         languageStyle='LTR',
-        depth=-4.0);
+        depth=-3.0);
     resp = keyboard.Keyboard()
     
     # --- Initialize components for Routine "end" ---
@@ -499,7 +499,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         import io
         import re
         
-        # Load instruction texts once
+        # load instruction texts
         if 'instr_dict' not in globals():
             raw = io.open("resources/instructions/instr_pl.txt", encoding="utf-8").read()
             parts = re.split(
@@ -512,7 +512,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 for i in range(1, len(parts), 2)
             }
         
-        # Choose which GENERAL page to show in this loop iteration
+        # choose general instruction page per loop iteration
         page_num = instr_pages.thisN + 1   # 1..3
         general_instruction = globals()['instr_dict'].get(
             f"GENERAL_{page_num}",
@@ -876,17 +876,17 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # update component parameters for each repeat
         thisExp.addData('block_start.started', globalClock.getTime())
         # Run 'Begin Routine' code from block_start_code
-        # Reset run clock once (first block only)
+        # reset run clock (first block only)
         if blocks.thisN == 0:
             runClock.reset()
         
-        # Block onset (time since start of run)
+        # block onset (time since start of run)
         block_onset = runClock.getTime()
         
         import io
         import re
         
-        # Load instruction texts once
+        # load instruction texts
         if 'instr_dict' not in globals():
             raw = io.open("resources/instructions/instr_pl.txt", encoding="utf-8").read()
             parts = re.split(
@@ -899,22 +899,22 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 for i in range(1, len(parts), 2)
             }
         
-        # Block identifiers
+        # block identifiers
         block_id = blocks.thisN + 1
         run_id = int(expInfo["run"])
         
-        # Instruction text for this block
+        # instruction text for this block
         block_instruction = globals()['instr_dict'].get(
             block_type,
             "BŁĄD: brak instrukcji dla bloku."
         )
         
-        # Select trials file for this block
+        # select trials file for this block
         if block_type == "CON":
             trials_file = f"resources/lists/con_run{run_id}.csv"
         elif block_type == "ABS":
             trials_file = f"resources/lists/abs_run{run_id}.csv"
-        else:  # BASE
+        else:
             trials_file = f"resources/lists/base_run{run_id}.csv"
         
         block_instr_text.setText(block_instruction)
@@ -1003,7 +1003,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         thisExp.addData('block_start.stopped', globalClock.getTime())
         # Run 'End Routine' code from block_start_code
         thisExp.addData("block_onset", block_onset)
-        
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
             routineTimer.reset()
@@ -1044,7 +1043,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # update component parameters for each repeat
             thisExp.addData('trial.started', globalClock.getTime())
             # Run 'Begin Routine' code from trial_timing
-            # Reset response container for this trial
+            # reset response container for this trial
             resp.keys = None
             resp.rt = None
             
@@ -1052,39 +1051,34 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             run_id = int(expInfo["run"])
             block_id = blocks.thisN + 1
             
-            # Trial counters
-            trial_index0 = trials.thisN          # 0-based
-            trial_index1 = trial_index0 + 1      # 1-based (for readability)
+            # trial counters
+            trial_index0 = trials.thisN          
+            trial_index1 = trial_index0 + 1      
             is_first_in_block = int(trial_index0 == 0)
             
-            # Time since start of run (runClock was reset once, after dummy TR)
+            # time since start of run
             trial_onset = runClock.getTime()
             
-            # Prompt text depends on block type
+            # prompt text depends on block type
             if block_type == "CON":
                 resp_prompt_text = "MNIEJSZY  ←        →  WIĘKSZY"
             elif block_type == "ABS":
                 resp_prompt_text = "MNIEJ WAŻNE  ←        →  WAŻNIEJSZE"
-            else:  # BASE
+            else:
                 resp_prompt_text = "DOWOLNY PRZYCISK"
             
-            # Store a copy of the filename actually used
+            # store a copy of the filename actually used
             stim_file_used = stimFile
             
-            # Save to CSV
+            # save to CSV
             thisExp.addData("trial_onset", trial_onset)
             thisExp.addData("block_onset", block_onset)
             thisExp.addData("trial_index1", trial_index1)
             thisExp.addData("is_first_in_block", is_first_in_block)
             thisExp.addData("stim_file_used", stim_file_used)
-            thisExp.addData("resp_prompt_text", resp_prompt_text)  # optional but useful
+            thisExp.addData("resp_prompt_text", resp_prompt_text)
             
             fixation.setText('+')
-            # Run 'Begin Routine' code from trial_sound_code
-            # stimFile pochodzi z CSV (loop trials)
-            stim_sound.setSound(stimFile, secs=1.5, hamming=False)
-            stim_sound.setVolume(1.0, log=False)
-            
             stim_sound.setSound(stimFile, secs=1.5, hamming=False)
             stim_sound.setVolume(1.0, log=False)
             stim_sound.seek(0)
@@ -1280,9 +1274,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 if hasattr(thisComponent, "setAutoDraw"):
                     thisComponent.setAutoDraw(False)
             thisExp.addData('trial.stopped', globalClock.getTime())
-            # Run 'End Routine' code from trial_sound_code
-            stim_sound.stop()
-            
             # check responses
             if resp.keys in ['', [], None]:  # No response was made
                 resp.keys = None
@@ -1324,7 +1315,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         )
     else:
         end_message = (
-            "To już koniec badania.\n"
+            "To koniec badania.\n"
             "Dziękuję za udział!\n\n"
             "Aby zakończyć, naciśnij dowolny przycisk."
         )

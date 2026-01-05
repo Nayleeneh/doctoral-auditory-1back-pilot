@@ -10,7 +10,7 @@
     <Param val="" valType="str" updates="None" name="End Message"/>
     <Param val="{'participant': 'pilot01', 'run': '1'}" valType="code" updates="None" name="Experiment info"/>
     <Param val="True" valType="bool" updates="None" name="Force stereo"/>
-    <Param val="False" valType="bool" updates="None" name="Full-screen window"/>
+    <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
     <Param val="" valType="str" updates="None" name="HTML path"/>
     <Param val="" valType="str" updates="None" name="Incomplete URL"/>
     <Param val="testMonitor" valType="str" updates="None" name="Monitor"/>
@@ -129,7 +129,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="import io&amp;#10;import re&amp;#10;&amp;#10;# Load instruction texts once&amp;#10;if 'instr_dict' not in globals():&amp;#10;    raw = io.open(&quot;resources/instructions/instr_pl.txt&quot;, encoding=&quot;utf-8&quot;).read()&amp;#10;    parts = re.split(&amp;#10;        r'^\[(GENERAL_1|GENERAL_2|GENERAL_3|CON|ABS|BASE)\]\s*$',&amp;#10;        raw,&amp;#10;        flags=re.MULTILINE&amp;#10;    )&amp;#10;    globals()['instr_dict'] = {&amp;#10;        parts[i]: parts[i + 1].strip()&amp;#10;        for i in range(1, len(parts), 2)&amp;#10;    }&amp;#10;&amp;#10;# Choose which GENERAL page to show in this loop iteration&amp;#10;page_num = instr_pages.thisN + 1   # 1..3&amp;#10;general_instruction = globals()['instr_dict'].get(&amp;#10;    f&quot;GENERAL_{page_num}&quot;,&amp;#10;    f&quot;BŁĄD: brak sekcji [GENERAL_{page_num}] w instr_pl.txt&quot;&amp;#10;)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="import io&amp;#10;import re&amp;#10;&amp;#10;# load instruction texts&amp;#10;if 'instr_dict' not in globals():&amp;#10;    raw = io.open(&quot;resources/instructions/instr_pl.txt&quot;, encoding=&quot;utf-8&quot;).read()&amp;#10;    parts = re.split(&amp;#10;        r'^\[(GENERAL_1|GENERAL_2|GENERAL_3|CON|ABS|BASE)\]\s*$',&amp;#10;        raw,&amp;#10;        flags=re.MULTILINE&amp;#10;    )&amp;#10;    globals()['instr_dict'] = {&amp;#10;        parts[i]: parts[i + 1].strip()&amp;#10;        for i in range(1, len(parts), 2)&amp;#10;    }&amp;#10;&amp;#10;# choose general instruction page per loop iteration&amp;#10;page_num = instr_pages.thisN + 1   # 1..3&amp;#10;general_instruction = globals()['instr_dict'].get(&amp;#10;    f&quot;GENERAL_{page_num}&quot;,&amp;#10;    f&quot;BŁĄD: brak sekcji [GENERAL_{page_num}] w instr_pl.txt&quot;&amp;#10;)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -163,7 +163,7 @@
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="$general_instruction" valType="str" updates="set every repeat" name="text"/>
         <Param val="height" valType="str" updates="None" name="units"/>
-        <Param val="2.0" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="instructions_key" plugin="None">
         <Param val="'a','b','c','d','space'" valType="list" updates="constant" name="allowedKeys"/>
@@ -302,14 +302,14 @@
         <Param val="block_instruction = &quot;&quot;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# Reset run clock once (first block only)&amp;#10;if blocks.thisN == 0:&amp;#10;    runClock.reset()&amp;#10;&amp;#10;# Block onset (time since start of run)&amp;#10;block_onset = runClock.getTime()&amp;#10;&amp;#10;import io&amp;#10;import re&amp;#10;&amp;#10;# Load instruction texts once&amp;#10;if 'instr_dict' not in globals():&amp;#10;    raw = io.open(&quot;resources/instructions/instr_pl.txt&quot;, encoding=&quot;utf-8&quot;).read()&amp;#10;    parts = re.split(&amp;#10;        r'^\[(GENERAL_1|GENERAL_2|GENERAL_3|CON|ABS|BASE)\]\s*$',&amp;#10;        raw,&amp;#10;        flags=re.MULTILINE&amp;#10;    )&amp;#10;    globals()['instr_dict'] = {&amp;#10;        parts[i]: parts[i + 1].strip()&amp;#10;        for i in range(1, len(parts), 2)&amp;#10;    }&amp;#10;&amp;#10;# Block identifiers&amp;#10;block_id = blocks.thisN + 1&amp;#10;run_id = int(expInfo[&quot;run&quot;])&amp;#10;&amp;#10;# Instruction text for this block&amp;#10;block_instruction = globals()['instr_dict'].get(&amp;#10;    block_type,&amp;#10;    &quot;BŁĄD: brak instrukcji dla bloku.&quot;&amp;#10;)&amp;#10;&amp;#10;# Select trials file for this block&amp;#10;if block_type == &quot;CON&quot;:&amp;#10;    trials_file = f&quot;resources/lists/con_run{run_id}.csv&quot;&amp;#10;elif block_type == &quot;ABS&quot;:&amp;#10;    trials_file = f&quot;resources/lists/abs_run{run_id}.csv&quot;&amp;#10;else:  # BASE&amp;#10;    trials_file = f&quot;resources/lists/base_run{run_id}.csv&quot;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# reset run clock (first block only)&amp;#10;if blocks.thisN == 0:&amp;#10;    runClock.reset()&amp;#10;&amp;#10;# block onset (time since start of run)&amp;#10;block_onset = runClock.getTime()&amp;#10;&amp;#10;import io&amp;#10;import re&amp;#10;&amp;#10;# load instruction texts&amp;#10;if 'instr_dict' not in globals():&amp;#10;    raw = io.open(&quot;resources/instructions/instr_pl.txt&quot;, encoding=&quot;utf-8&quot;).read()&amp;#10;    parts = re.split(&amp;#10;        r'^\[(GENERAL_1|GENERAL_2|GENERAL_3|CON|ABS|BASE)\]\s*$',&amp;#10;        raw,&amp;#10;        flags=re.MULTILINE&amp;#10;    )&amp;#10;    globals()['instr_dict'] = {&amp;#10;        parts[i]: parts[i + 1].strip()&amp;#10;        for i in range(1, len(parts), 2)&amp;#10;    }&amp;#10;&amp;#10;# block identifiers&amp;#10;block_id = blocks.thisN + 1&amp;#10;run_id = int(expInfo[&quot;run&quot;])&amp;#10;&amp;#10;# instruction text for this block&amp;#10;block_instruction = globals()['instr_dict'].get(&amp;#10;    block_type,&amp;#10;    &quot;BŁĄD: brak instrukcji dla bloku.&quot;&amp;#10;)&amp;#10;&amp;#10;# select trials file for this block&amp;#10;if block_type == &quot;CON&quot;:&amp;#10;    trials_file = f&quot;resources/lists/con_run{run_id}.csv&quot;&amp;#10;elif block_type == &quot;ABS&quot;:&amp;#10;    trials_file = f&quot;resources/lists/abs_run{run_id}.csv&quot;&amp;#10;else:&amp;#10;    trials_file = f&quot;resources/lists/base_run{run_id}.csv&quot;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="thisExp.addData(&quot;block_onset&quot;, block_onset)&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="thisExp.addData(&quot;block_onset&quot;, block_onset)" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="block_start_code" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -361,7 +361,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="resp.keys = null;&amp;#10;resp.rt = null;&amp;#10;trial_in_block = trials.thisN;&amp;#10;is_first_in_block = Number.parseInt((trial_in_block === 0));&amp;#10;if ((block_type === &quot;BASE&quot;)) {&amp;#10;    resp.keys = null;&amp;#10;    resp.rt = null;&amp;#10;    resp.status = NOT_STARTED;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# Reset response container for this trial&amp;#10;resp.keys = None&amp;#10;resp.rt = None&amp;#10;&amp;#10;# IDs (run is chosen manually in the dialog)&amp;#10;run_id = int(expInfo[&quot;run&quot;])&amp;#10;block_id = blocks.thisN + 1&amp;#10;&amp;#10;# Trial counters&amp;#10;trial_index0 = trials.thisN          # 0-based&amp;#10;trial_index1 = trial_index0 + 1      # 1-based (for readability)&amp;#10;is_first_in_block = int(trial_index0 == 0)&amp;#10;&amp;#10;# Time since start of run (runClock was reset once, after dummy TR)&amp;#10;trial_onset = runClock.getTime()&amp;#10;&amp;#10;# Prompt text depends on block type&amp;#10;if block_type == &quot;CON&quot;:&amp;#10;    resp_prompt_text = &quot;MNIEJSZY  ←        →  WIĘKSZY&quot;&amp;#10;elif block_type == &quot;ABS&quot;:&amp;#10;    resp_prompt_text = &quot;MNIEJ WAŻNE  ←        →  WAŻNIEJSZE&quot;&amp;#10;else:  # BASE&amp;#10;    resp_prompt_text = &quot;DOWOLNY PRZYCISK&quot;&amp;#10;&amp;#10;# Store a copy of the filename actually used&amp;#10;stim_file_used = stimFile&amp;#10;&amp;#10;# Save to CSV&amp;#10;thisExp.addData(&quot;trial_onset&quot;, trial_onset)&amp;#10;thisExp.addData(&quot;block_onset&quot;, block_onset)&amp;#10;thisExp.addData(&quot;trial_index1&quot;, trial_index1)&amp;#10;thisExp.addData(&quot;is_first_in_block&quot;, is_first_in_block)&amp;#10;thisExp.addData(&quot;stim_file_used&quot;, stim_file_used)&amp;#10;thisExp.addData(&quot;resp_prompt_text&quot;, resp_prompt_text)  # optional but useful&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# reset response container for this trial&amp;#10;resp.keys = None&amp;#10;resp.rt = None&amp;#10;&amp;#10;# IDs (run is chosen manually in the dialog)&amp;#10;run_id = int(expInfo[&quot;run&quot;])&amp;#10;block_id = blocks.thisN + 1&amp;#10;&amp;#10;# trial counters&amp;#10;trial_index0 = trials.thisN          &amp;#10;trial_index1 = trial_index0 + 1      &amp;#10;is_first_in_block = int(trial_index0 == 0)&amp;#10;&amp;#10;# time since start of run&amp;#10;trial_onset = runClock.getTime()&amp;#10;&amp;#10;# prompt text depends on block type&amp;#10;if block_type == &quot;CON&quot;:&amp;#10;    resp_prompt_text = &quot;MNIEJSZY  ←        →  WIĘKSZY&quot;&amp;#10;elif block_type == &quot;ABS&quot;:&amp;#10;    resp_prompt_text = &quot;MNIEJ WAŻNE  ←        →  WAŻNIEJSZE&quot;&amp;#10;else:&amp;#10;    resp_prompt_text = &quot;DOWOLNY PRZYCISK&quot;&amp;#10;&amp;#10;# store a copy of the filename actually used&amp;#10;stim_file_used = stimFile&amp;#10;&amp;#10;# save to CSV&amp;#10;thisExp.addData(&quot;trial_onset&quot;, trial_onset)&amp;#10;thisExp.addData(&quot;block_onset&quot;, block_onset)&amp;#10;thisExp.addData(&quot;trial_index1&quot;, trial_index1)&amp;#10;thisExp.addData(&quot;is_first_in_block&quot;, is_first_in_block)&amp;#10;thisExp.addData(&quot;stim_file_used&quot;, stim_file_used)&amp;#10;thisExp.addData(&quot;resp_prompt_text&quot;, resp_prompt_text)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="if ((block_type === &quot;BASE&quot;)) {&amp;#10;    resp.keys = null;&amp;#10;    resp.rt = null;&amp;#10;}&amp;#10;if ((t &gt;= 3.0)) {&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -397,23 +397,6 @@
         <Param val="height" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <CodeComponent name="trial_sound_code" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="stim_sound.setSound(stimFile, {&quot;secs&quot;: 1.5, &quot;hamming&quot;: false});&amp;#10;stim_sound.setVolume(1.0, {&quot;log&quot;: false});&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# stimFile pochodzi z CSV (loop trials)&amp;#10;stim_sound.setSound(stimFile, secs=1.5, hamming=False)&amp;#10;stim_sound.setVolume(1.0, log=False)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="stim_sound.stop();&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="stim_sound.stop()&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="trial_sound_code" valType="code" updates="None" name="name"/>
-      </CodeComponent>
       <SoundComponent name="stim_sound" plugin="None">
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
@@ -497,7 +480,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="if ((run_id === 1)) {&amp;#10;    end_message = &quot;To po\u0142owa badania.\n\nUruchom teraz eksperyment ponownie i wybierz RUN = 2.\nAby kontynuowa\u0107, wci\u015bnij dowolny przecisklny przycisk, aby zako\u0144czy\u0107.&quot;;&amp;#10;} else {&amp;#10;    end_message = &quot;Koniec badania (RUN 2).\n\nDzi\u0119kujemy za udzia\u0142.\nNaci\u015bnij dowolny przycisk, aby zako\u0144czy\u0107.&quot;;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="run_id = int(expInfo[&quot;run&quot;])&amp;#10;&amp;#10;if run_id == 1:&amp;#10;    end_message = (&amp;#10;        &quot;Jesteśmy w połowie badania.\n\n\n&quot;&amp;#10;        &quot;Aby kontynuować, naciśnij dowolny przycisk.&quot;&amp;#10;    )&amp;#10;else:&amp;#10;    end_message = (&amp;#10;        &quot;To już koniec badania.\n&quot;&amp;#10;        &quot;Dziękuję za udział!\n\n&quot;&amp;#10;        &quot;Aby zakończyć, naciśnij dowolny przycisk.&quot;&amp;#10;    )&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="run_id = int(expInfo[&quot;run&quot;])&amp;#10;&amp;#10;if run_id == 1:&amp;#10;    end_message = (&amp;#10;        &quot;Jesteśmy w połowie badania.\n\n\n&quot;&amp;#10;        &quot;Aby kontynuować, naciśnij dowolny przycisk.&quot;&amp;#10;    )&amp;#10;else:&amp;#10;    end_message = (&amp;#10;        &quot;To koniec badania.\n&quot;&amp;#10;        &quot;Dziękuję za udział!\n\n&quot;&amp;#10;        &quot;Aby zakończyć, naciśnij dowolny przycisk.&quot;&amp;#10;    )&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>

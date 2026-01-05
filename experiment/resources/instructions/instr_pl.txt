@@ -2,13 +2,12 @@
 
 Za chwilę rozpocznie się badanie.
 
-Będziesz słuchać nagrań pojedynczych słów
-oraz fragmentów niezrozumiałej mowy.
+Będziesz słuchać nagrań pojedynczych słów oraz szumu.
 
 W zależności od rodzaju bodźców:
 – porównasz przedmioty konkretne,
 – porównasz pojęcia abstrakcyjne,
-– albo zareagujesz na niezrozumiały dźwięk.
+– albo zareagujesz na szum.
 
 Naciśnij dowolny przycisk, aby zobaczyć przykłady.
 
@@ -22,8 +21,8 @@ pojęcia ABSTRAKCYJNE: „przyjaźń” → „pieniądze”
 Odpowiedz intuicyjnie: Czy późniejsze pojęcie (pieniądze) jest 
 MNIEJ WAŻNE (LEWY) czy WAŻNIEJSZE (PRAWY) od poprzedniego pojęcia (przyjaźń)?
 
-NIEZROZUMIAŁE dźwięki:
-Tu usłyszysz różne dźwięki, które nie są konkretnymi słowami.
+SZUM:
+Tu usłyszysz różne nagrania szumu, które nie są konkretnymi słowami.
 Naciśnij DOWOLNY przycisk (LEWY lub PRAWY), gdy skończy się nagranie.
 
 Naciśnij dowolny przycisk, aby kontynuować.
@@ -62,7 +61,7 @@ WAŻNIEJSZE → PRAWY
 
 [BASE]
 
-Teraz: NIEZROZUMIAŁE dźwięki
+Teraz: SZUM
 
 Naciśnij DOWOLNY przycisk,
 gdy usłyszysz dźwięk.
